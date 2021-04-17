@@ -1,8 +1,7 @@
-const chai = require("chai");
+const supertest = require("supertest");
 const sinon = require("sinon");
 
 let app, request, auth;
-
 
 before(() => {
   auth = require("../../middleware/auth-check");
@@ -11,14 +10,12 @@ before(() => {
   });
 
   app = require("../../index");
-  request = require("supertest")(app);
+  request = supertest(app);
 });
 
 describe("GET All furniture", () => {
   it("should return 200", (done) => {
-    request
-      .get("/furniture/all")
-      .expect(200, done);
+    request.get("/furniture/all").expect(200, done);
   });
 });
 
